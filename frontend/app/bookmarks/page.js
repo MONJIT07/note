@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import BookmarkCard from '@/components/BookmarkCard';
 import Modal from '@/components/Modal';
+import API_URL from '@/config';
 
 export default function BookmarksPage() {
     const [bookmarks, setBookmarks] = useState([]);
@@ -14,7 +15,7 @@ export default function BookmarksPage() {
     const fetchBookmarks = async () => {
         try {
             setLoading(true);
-            const res = await fetch(`http://localhost:5000/api/bookmarks?search=${search}`);
+            const res = await fetch(`${API_URL}/bookmarks?search=${search}`);
             const data = await res.json();
             setBookmarks(data);
         } catch (error) {
@@ -35,7 +36,7 @@ export default function BookmarksPage() {
         e.preventDefault();
         try {
             const tagsArray = formData.tags.split(',').map(tag => tag.trim()).filter(Boolean);
-            await fetch('http://localhost:5000/api/bookmarks', {
+            await fetch(`${API_URL}/bookmarks`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ ...formData, tags: tagsArray }),
@@ -51,7 +52,7 @@ export default function BookmarksPage() {
     const handleDelete = async (id) => {
         if (!confirm('Are you sure?')) return;
         try {
-            await fetch(`http://localhost:5000/api/bookmarks/${id}`, { method: 'DELETE' });
+            await fetch(`${API_URL}/bookmarks/${id}`, { method: 'DELETE' });
             fetchBookmarks();
         } catch (error) {
             console.error('Error deleting bookmark:', error);

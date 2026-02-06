@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import NoteCard from '@/components/NoteCard';
 import Modal from '@/components/Modal';
+import API_URL from '@/config';
 
 export default function NotesPage() {
     const [notes, setNotes] = useState([]);
@@ -14,7 +15,7 @@ export default function NotesPage() {
     const fetchNotes = async () => {
         try {
             setLoading(true);
-            const res = await fetch(`http://localhost:5000/api/notes?search=${search}`);
+            const res = await fetch(`${API_URL}/notes?search=${search}`);
             const data = await res.json();
             setNotes(data);
         } catch (error) {
@@ -35,7 +36,7 @@ export default function NotesPage() {
         e.preventDefault();
         try {
             const tagsArray = formData.tags.split(',').map(tag => tag.trim()).filter(Boolean);
-            await fetch('http://localhost:5000/api/notes', {
+            await fetch(`${API_URL}/notes`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ ...formData, tags: tagsArray }),
@@ -51,7 +52,7 @@ export default function NotesPage() {
     const handleDelete = async (id) => {
         if (!confirm('Are you sure?')) return;
         try {
-            await fetch(`http://localhost:5000/api/notes/${id}`, { method: 'DELETE' });
+            await fetch(`${API_URL}/notes/${id}`, { method: 'DELETE' });
             fetchNotes();
         } catch (error) {
             console.error('Error deleting note:', error);
