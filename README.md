@@ -5,7 +5,7 @@ A premium, full-stack application to manage your notes and bookmarks with automa
 ![Project Preview](https://via.placeholder.com/800x400?text=Premium+Design+Preview) (Replace with real screenshot)
 
 ## 🚀 Live Demo
-**[Insert Your Deployed Frontend Link Here]**
+**[Live App (Frontend)](https://melodic-buttercream-6a8812.netlify.app/)**
 
 ## 🛠️ Tech Stack
 - **Frontend**: Next.js 16, Tailwind CSS (v4), Glassmorphism UI
