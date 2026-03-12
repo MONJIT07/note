@@ -19,13 +19,4 @@ A premium, full-stack application to manage your notes and bookmarks with automa
 - **Design**: Modern glassmorphism aesthetics with dark mode.
 
 
-```
-*Note: Uses in-memory MongoDB by default. To persist data, create a `.env` file with `MONGO_URI`.*
 
-### Frontend
-```bash
-cd frontend
-npm install
-npm run dev
-# Runs on http://localhost:3000
-```
